@@ -5,9 +5,10 @@ import { hashPassword } from "../helpers/authHelper.js"
 import {User} from "../models/user.model.js"
 
 
-console.log("wrking3")
+
 
 const registerController = async(req, res)=>{
+    console.log('registeration')
     try {
         console.log('registeration')
         const {name ,email,password,phone,address} =req.body
