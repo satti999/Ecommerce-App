@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 const userSchema = new mongoose.Schema(
    {
 
-     name:{
+     username:{
         type:String,
         required:true,
         unique:true,
@@ -21,17 +21,17 @@ const userSchema = new mongoose.Schema(
         trim:true
      },
      fullName: {
-      type: String,
-      required: true,
-      trim: true, 
-      index: true
+         type: String,
+         required: true,
+         trim: true, 
+         index: true
          },
       avatar: {
-      type: String, // cloudinary url
-      required: true,
+         type: String, // cloudinary url
+        // required: true,
       },
       coverImage: {
-      type: String, // cloudinary url
+         type: String, // cloudinary url
       },
       watchHistory: [
       {
@@ -43,10 +43,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             required:true
          },
-      phone:{
-            type:String,
-            required:true
-         },
+     
       refreshToken: {
          type: String
       }
@@ -61,7 +58,8 @@ const userSchema = new mongoose.Schema(
 //hooks very important 
 userSchema.pre("save", async function (next){
    if(!this.isModified("password")) return next();
-   this.password = bcrypt.hash(this.password,10)
+   const saltRounds =10;
+   this.password = await bcrypt.hash(this.password,saltRounds)
    next()
 })
 //custom methods in Schemas

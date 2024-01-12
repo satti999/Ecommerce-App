@@ -5,16 +5,28 @@ import express from 'express';
 import colors from 'colors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import cors from "cors"
+import cookieParser from "cookie-parser"
 import {connectToMongoDB} from "./src/db/index.js"
-import {userRouter} from "./src/routes/authRoute.js"
-import {registerController} from "./src/controllers/authController.js"
-dotenv.config();
+import {userRouter} from "./src/routes/user.routes.js"
+//import {registerController} from "./src/controllers/authController.js"
+
+dotenv.config({
+  path:'./.env'
+});
 
 // Initialize Express app
 const app = express();
-
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  credentials: true
+}))
 // Middleware setup
-app.use(express.json());
+app.use(express.json({limit: "16kb"}))
+app.use(express.urlencoded({extended: true, limit: "16kb"}))
+app.use(express.static("public"))
+app.use(cookieParser())
+
 app.use(morgan('dev'));
 
 // Routes
