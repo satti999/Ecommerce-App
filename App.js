@@ -13,6 +13,7 @@ import { videoRouter } from './src/routes/video.route.js';
 import{subscriptionRouter} from "./src/routes/subscription.route.js";
 import{likeRouter}  from "./src/routes/like.route.js";
 import{tweetRouter} from "./src/routes/tweet.route.js"
+import{playlistRouter} from "./src/routes/playlist.route.js"
 //import {registerController} from "./src/controllers/authController.js"
 
 dotenv.config({
@@ -52,6 +53,8 @@ app.use("/api/v1/users", userRouter)
   app.use("/api/v1/subscription",subscriptionRouter)
   app.use("/api/v1/like",likeRouter)
   app.use("/api/v1/videos",tweetRouter)
+  
+  app.use("/api/v1/playlist",playlistRouter)
 
 
 //app.get("/api/v1/videos", (req, res)=>{console.log(req.query); res.send(req.params)})

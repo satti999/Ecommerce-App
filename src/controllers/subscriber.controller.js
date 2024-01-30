@@ -35,7 +35,7 @@ const toggleSubscription = asyncHandler(async(req,res)=>{
 
 
   if(!subscription){
-    const createSubscription = await subscription.create({
+    const createSubscription = await Subscription.create({
         subsriber:userId,
         channel:channelId
     });

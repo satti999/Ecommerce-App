@@ -29,4 +29,4 @@ const playlistSchemma = new Schema(
 
 
 
-export const  Comment = monogoose.model("Playlist",playlistSchemma)
+export const  Playlist = monogoose.model("Playlist",playlistSchemma)
